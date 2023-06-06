@@ -9,6 +9,7 @@ namespace ApiPractice.Core.Entities
     public class Category : BaseEntity
     {
         //alma
+        //armud
         public string Name { get; set; }
     }
 }
