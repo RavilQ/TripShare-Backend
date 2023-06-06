@@ -8,6 +8,7 @@ namespace ApiPractice.Core.Entities
 {
     public class Category : BaseEntity
     {
+        //alma
         public string Name { get; set; }
     }
 }
