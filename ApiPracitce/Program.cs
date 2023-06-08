@@ -14,7 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICityRepository, CityRepository>();
 
-builder.Services.AddDbContext<StoreDbContext>(opt=>opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddDbContext<StoreDbContext>(opt=>opt.UseSqlServer(builder.Configuration.GetConnectionString("Tahir")));
 
 builder.Services.AddAutoMapper(opt =>
 {
