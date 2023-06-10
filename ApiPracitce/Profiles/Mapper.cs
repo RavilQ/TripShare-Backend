@@ -12,6 +12,7 @@ namespace ApiPracitce.Profiles
             CreateMap<Category, CategoryGetDto>();
             CreateMap<CategoryPostDto, Category>();
             CreateMap<City, CityGetListItemDto>();
+            CreateMap<City, CityGetDto>();
         }
     }
 }

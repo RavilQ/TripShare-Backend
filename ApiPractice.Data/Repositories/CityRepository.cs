@@ -48,5 +48,6 @@ namespace ApiPractice.Data.Repositories
         {
             return await _context.Cities.FirstOrDefaultAsync(exp);
         }
+
     }
 }

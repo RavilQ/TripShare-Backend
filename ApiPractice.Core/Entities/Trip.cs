@@ -10,5 +10,10 @@ namespace ApiPractice.Core.Entities
     {
         public string From { get; set; }
         public string To { get; set; }
+        public DateTime When { get; set; }
+        public int TotalSeats { get; set; } 
+        public bool Smooking { get; set; }
+        public bool Pets { get; set; }
+        public bool Luggage { get; set; }
     }
 }
