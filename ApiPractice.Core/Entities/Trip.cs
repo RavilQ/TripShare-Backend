@@ -15,5 +15,8 @@ namespace ApiPractice.Core.Entities
         public bool Smooking { get; set; }
         public bool Pets { get; set; }
         public bool Luggage { get; set; }
+        public int DriverId { get; set; }
+
+        public Driver Driver { get; set; }
     }
 }

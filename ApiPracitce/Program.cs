@@ -1,7 +1,9 @@
 using ApiPracitce.Profiles;
+using ApiPractice.Core.Entities;
 using ApiPractice.Core.Repositories;
 using ApiPractice.Data;
 using ApiPractice.Data.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -27,6 +29,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
+{
+    opt.Password.RequireNonAlphanumeric = false;
+}).AddDefaultTokenProviders().AddEntityFrameworkStores<StoreDbContext>();
 
 // ==========================
 // 1 DataBase
