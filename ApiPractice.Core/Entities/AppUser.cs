@@ -10,6 +10,6 @@ namespace ApiPractice.Core.Entities
     public class AppUser:IdentityUser
     {
         public string Fullname { get; set; }
-        public string Image { get; set; }
+        public string? Image { get; set; }
     }
 }

@@ -3,11 +3,11 @@ using ApiPractice.Core.Entities;
 using ApiPractice.Core.Repositories;
 using ApiPractice.Data;
 using ApiPractice.Data.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
-
-
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,7 +65,20 @@ builder.Services.AddScoped<ICityRepository, CityRepository>();
 builder.Services.AddCors();
 
 
-
+builder.Services.AddAuthentication(opt =>
+{
+    opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme; ;
+    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme; ;
+}).AddJwtBearer(opt =>
+{
+    opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        ValidAudience = builder.Configuration.GetSection("JWT:audience").Value,
+        ValidIssuer = builder.Configuration.GetSection("JWT:issuer").Value,
+        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration.GetSection("JWT:Secret").Value))
+    };
+});
 
 
 
@@ -95,6 +108,7 @@ app.UseCors(builder =>
     .AllowAnyHeader();
 });
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
