@@ -75,7 +75,7 @@ builder.Services.AddAuthentication(opt =>
     opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
     {
         ValidAudience = builder.Configuration.GetSection("JWT:audience").Value,
-        ValidIssuer = builder.Configuration.GetSection("JWT:issuer").Value,
+        ValidIssuer = builder.Configuration.GetSection("JWT:issure").Value,
         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration.GetSection("JWT:Secret").Value))
     };
 });

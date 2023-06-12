@@ -74,7 +74,7 @@ namespace ApiPracitce.Controllers
                 claims:claims,
                 signingCredentials:creds,
                 expires:DateTime.UtcNow.AddHours(8),
-                issuer: _conf.GetSection("JWT:issuer").Value,
+                issuer: _conf.GetSection("JWT:issure").Value,
                 audience: _conf.GetSection("JWT:audience").Value
                 );
 
