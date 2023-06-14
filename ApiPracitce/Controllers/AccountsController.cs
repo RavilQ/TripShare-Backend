@@ -1,5 +1,7 @@
 ﻿using ApiPracitce.Dtos.AccountDtos;
 using ApiPractice.Core.Entities;
+using ApiPractice.Core.Repositories;
+using ApiPractice.Data.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -18,12 +20,14 @@ namespace ApiPracitce.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _conf;
+        private readonly IAccountRepository _accountRepository;
 
-        public AccountsController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration conf)
+        public AccountsController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration conf, IAccountRepository accountRepository)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _conf = conf;
+            _accountRepository = accountRepository;
         }
 
         // For creating roles
@@ -41,7 +45,9 @@ namespace ApiPracitce.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login(LoginDto loginDto)
         {
-            AppUser user = await _userManager.FindByNameAsync(loginDto.UserName);
+            //AppUser user = await _userManager.FindByNameAsync(loginDto.UserName);
+
+            AppUser user = await _accountRepository.GetAsync(x => x.PhoneNumber == loginDto.Number);
 
             if (user==null)
             {
@@ -56,6 +62,7 @@ namespace ApiPracitce.Controllers
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.MobilePhone, user.PhoneNumber),
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim("Fullname",user.Fullname)
             };

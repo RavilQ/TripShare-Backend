@@ -54,8 +54,7 @@ builder.Services.AddAutoMapper(opt =>
 // ==========================
 
 builder.Services.AddScoped<ICityRepository, CityRepository>();
-
-
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
 
 
