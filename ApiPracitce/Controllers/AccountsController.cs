@@ -99,6 +99,21 @@ namespace ApiPracitce.Controllers
         //    return Ok();
         //}
 
+        //[HttpPost("createUser")]
+        //public async Task<IActionResult> CreateAdmin()
+        //{
+        //    AppUser admin = new AppUser
+        //    {
+        //        UserName = "0775474948",
+        //        Fullname = "Tahir Tahirli",
+        //    };
+
+        //    await _userManager.CreateAsync(admin, "Tahir123");
+        //    await _userManager.AddToRoleAsync(admin, "Member");
+
+        //    return Ok();
+        //}
+
         [Authorize(Roles = "SuperAdmin,Admin")]
         [HttpGet("profile")]
         public async Task<IActionResult> Profile()
