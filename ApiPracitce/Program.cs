@@ -32,13 +32,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
 {
     opt.Password.RequireNonAlphanumeric = false;
+    opt.Password.RequiredLength = 8;
+    opt.User.AllowedUserNameCharacters = "0123456789";
 }).AddDefaultTokenProviders().AddEntityFrameworkStores<StoreDbContext>();
 
 // ==========================
 // 1 DataBase
 // ==========================
 
-builder.Services.AddDbContext<StoreDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddDbContext<StoreDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("Tahir")));
 
 // ==========================
 // 2 AutoMapper
